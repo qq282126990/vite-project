@@ -1,5 +1,4 @@
 // import type { ComponentResolver } from './types';
-
 export function kebabCase(key) {
   const result = key.replace(/([A-Z])/g, ' $1').trim();
   return result.split(' ').join('-').toLowerCase();
@@ -15,13 +14,6 @@ function getSideEffects() {
 
   return sideEffects;
 }
-
-const matchComponents = [
-  {
-    pattern: /^List/,
-    compDir: 'list',
-  },
-];
 
 function getCompDir(compName) {
 
@@ -39,18 +31,85 @@ function getCompDir(compName) {
   return compPath;
 }
 
+
 const resolveComponent = (name) => {
   if (!name.match(/^Ivue[A-Z]/)) {
     return;
   }
 
   const partialName = kebabCase(name)
-  console.log('name', partialName)
 
+  // ivue-select
+  if (partialName.match(/^ivue-op[a-z]/)) {
+    return {
+      from: `ivue-material-plus/unplugin-vue-components/es/ivue-select/index`,
+      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/ivue-select.css`,
+    }
+  }
 
+  // ivue-table
+  if (partialName.match(/^ivue-tabl[a-z]/)) {
+    return {
+      from: `ivue-material-plus/unplugin-vue-components/es/ivue-table/index`,
+      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/ivue-table.css`,
+    }
+  }
+
+  // ivue-collapse
+  if (partialName.match(/^ivue-coll[a-z]/)) {
+    return {
+      from: `ivue-material-plus/unplugin-vue-components/es/ivue-collapse/index`,
+      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/ivue-collapse.css`,
+    }
+  }
+
+  // ivue-tabs
+  if (partialName.match(/^ivue-tab-[a-z]/) || partialName.match(/^ivue-ta[a-z]/)) {
+    return {
+      from: `ivue-material-plus/unplugin-vue-components/es/ivue-tabs/index`,
+      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/ivue-tabs.css`,
+    }
+  }
+
+  // ivue-steps
+  if (partialName.match(/^ivue-ste[a-z]/)) {
+    return {
+      from: `ivue-material-plus/unplugin-vue-components/es/ivue-steps/index`,
+      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/ivue-steps.css`,
+    }
+  }
+
+  // group
+  if (partialName.match('group') || partialName.match('item')) {
+
+    const match = partialName.match('group') || partialName.match('item')
+
+    let _partialName = partialName
+    if (match) {
+      _partialName = partialName.replace(`-${match[0]}`, '')
+    }
+
+    return {
+      from: `ivue-material-plus/unplugin-vue-components/es/${_partialName}`,
+      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/${_partialName}.css`,
+    }
+  }
+
+  // ivue-content
+  if (partialName.match(/^ivue-cont[a-z]/)) {
+    return {
+      from: `ivue-material-plus/unplugin-vue-components/es/ivue-steps/index`,
+      sideEffects: `ivue-material-plus/styles/elevation.css`,
+    }
+  }
+
+  // fix:全局引入icon
   return {
-    from: `./dist/components/${partialName}/index.vue`,
-    // sideEffects: getSideEffectsLegacy(partialName, options),
+    from: `ivue-material-plus/unplugin-vue-components/es/${partialName}`,
+    sideEffects: [
+      `ivue-material-plus/unplugin-vue-components/styles/ivue-icon.css`,
+      `ivue-material-plus/unplugin-vue-components/styles/${partialName}.css`,
+    ]
   }
 };
 
