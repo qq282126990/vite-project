@@ -4,131 +4,165 @@ export function kebabCase(key) {
   return result.split(' ').join('-').toLowerCase();
 }
 
+// 安装包路径
+const pakPath = 'ivue-material-plus/dist/unplugin-vue-components'
+
+// 没有样式的组件
+const noStylesComponents = [
+  'ivue-content',
+  'ivue-carousel-item',
+  'ivue-bottom-nav-item',
+  'ivue-breadcrumbs-item',
+  'ivue-checkbox-group',
+  'ivue-collapse-panel',
+  'ivue-count-down',
+  'ivue-count-up',
+  'ivue-radio-group',
+  'ivue-option',
+  'ivue-option-group'
+]
 
 // 需要自动引入的插件或者css
-function getSideEffects() {
-  const sideEffects = [
-    'view-design/dist/styles/iview.css',
-    'popper.js/dist/umd/popper.js',
+// function getSideEffects() {
+//   const sideEffects = [
+//     'popper.js/dist/umd/popper.js',
+//   ];
+
+//   return sideEffects;
+// }
+
+// 合并路径
+function mergePath(componentsName) {
+
+  if (componentsName.match('item')) {
+    const match = componentsName.match('item')
+
+    if (match) {
+      componentsName = componentsName.replace(`-${match[0]}`, '')
+    }
+  }
+
+  console.log('componentsName', componentsName)
+  return [
+    `ivue-material-plus/dist/styles/color.css`,
+    `${pakPath}/styles/ivue-icon.css`,
+    `${pakPath}/styles/${componentsName}.css`,
   ];
-
-  return sideEffects;
 }
 
-function getCompDir(compName) {
-
-  // const total = matchComponents.length;
-  // for (let i = 0; i < total; i++) {
-  //   const matcher = matchComponents[i];
-  //   if (compName.match(matcher.pattern)) {
-  //     compPath = `${matcher.compDir}/${kebabCase(compName)}.vue`;
-  //     break;
-  //   }
-  // }
-  // if (!compPath)
-  //   compPath = kebabCase(compName);
-
-  return compPath;
+// 额外处理的路径
+function extraProcessingPath(name) {
+  return {
+    from: `${pakPath}/es/${name}`,
+    sideEffects: mergePath(name)
+  }
 }
 
-
-const resolveComponent = (name) => {
-  if (!name.match(/^Ivue[A-Z]/)) {
-    return;
+// 设置样式文件
+function getSideEffects(componentsName, options) {
+  // 没有样式文件
+  if (!options.importStyle) {
+    return
   }
 
-  const partialName = kebabCase(name)
+  return [
+    `ivue-material-plus/dist/styles/color.css`,
+    `${pakPath}/styles/reset.css`,
+    `${pakPath}/styles/ivue-icon.css`,
+    `${pakPath}/styles/${componentsName}.css`,
+  ];
+}
 
+
+
+// 请求组件
+const resolveComponent = (componentsName, options) => {
   // ivue-select
-  if (partialName.match(/^ivue-op[a-z]/)) {
+  if (componentsName.match(/^ivue-op[a-z]/)) {
     return {
-      from: `ivue-material-plus/unplugin-vue-components/es/ivue-select/index`,
-      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/ivue-select.css`,
+      from: `${pakPath}/es/ivue-select/${componentsName.replace('ivue-', '')}`,
     }
   }
 
-  // ivue-table
-  if (partialName.match(/^ivue-tabl[a-z]/)) {
-    return {
-      from: `ivue-material-plus/unplugin-vue-components/es/ivue-table/index`,
-      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/ivue-table.css`,
-    }
-  }
-
-  // ivue-collapse
-  if (partialName.match(/^ivue-coll[a-z]/)) {
-    return {
-      from: `ivue-material-plus/unplugin-vue-components/es/ivue-collapse/index`,
-      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/ivue-collapse.css`,
-    }
-  }
-
-  // ivue-tabs
-  if (partialName.match(/^ivue-tab-[a-z]/) || partialName.match(/^ivue-ta[a-z]/)) {
-    return {
-      from: `ivue-material-plus/unplugin-vue-components/es/ivue-tabs/index`,
-      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/ivue-tabs.css`,
-    }
-  }
 
   // ivue-steps
-  if (partialName.match(/^ivue-ste[a-z]/)) {
+  if (componentsName === 'ivue-step') {
     return {
-      from: `ivue-material-plus/unplugin-vue-components/es/ivue-steps/index`,
-      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/ivue-steps.css`,
+      from: `${pakPath}/es/ivue-steps/${componentsName.replace('ivue-', '')}`,
     }
   }
 
-  // group
-  if (partialName.match('group') || partialName.match('item')) {
+  // // ivue-table
+  // if (componentsName.match(/^ivue-tabl[a-z]/)) {
+  //   return extraProcessingPath('ivue-table')
+  // }
 
-    const match = partialName.match('group') || partialName.match('item')
+  // // ivue-collapse
+  // if (componentsName.match(/^ivue-coll[a-z]/)) {
+  //   return extraProcessingPath('ivue-collapse')
+  // }
 
-    let _partialName = partialName
-    if (match) {
-      _partialName = partialName.replace(`-${match[0]}`, '')
-    }
-
-    return {
-      from: `ivue-material-plus/unplugin-vue-components/es/${_partialName}`,
-      sideEffects: `ivue-material-plus/unplugin-vue-components/styles/${_partialName}.css`,
-    }
-  }
-
-  // ivue-content
-  if (partialName.match(/^ivue-cont[a-z]/)) {
-    return {
-      from: `ivue-material-plus/unplugin-vue-components/es/ivue-steps/index`,
-      sideEffects: `ivue-material-plus/styles/elevation.css`,
-    }
-  }
-
-  // fix:全局引入icon
   return {
-    from: `ivue-material-plus/unplugin-vue-components/es/${partialName}`,
-    sideEffects: [
-      `ivue-material-plus/unplugin-vue-components/styles/ivue-icon.css`,
-      `ivue-material-plus/unplugin-vue-components/styles/${partialName}.css`,
-    ]
+    from: `${pakPath}/es/${componentsName}`,
+    sideEffects: getSideEffects(componentsName, options)
   }
 };
 
-export function IvueMaterialPlusResolver(options) {
-  return {
-    type: 'component',
-    // resolve: (name: string) => {
-    //   if (name.match(/^I[A-Z]/)) {
-    //     const compName = name.slice(1);
-
-    //     return {
-    //       from: `ivue-material-plus/src/components/${getCompDir(compName)}`,
-    //       // 需要自动引入的插件或者css
-    //       sideEffects: getSideEffects(),
-    //     };
-    //   }
-    // },
-    resolve: (name) => {
-      return resolveComponent(name);
+// 请求指令
+const resolveDirective = (name) => {
+  const directives = {
+    Loading: {
+      name: 'IvueLoadingDirective',
+      importName: 'ivue-loading',
+      styleName: 'ivue-loading'
     },
-  };
+  }
+
+  const directive = directives[name];
+
+  if (!directive) {
+    return
+  }
+
+  return {
+    name: directive.name,
+    from: `${pakPath}/es/${directive.importName}`,
+    sideEffects: getSideEffects(directive.styleName, {
+      importStyle: true
+    })
+  }
+}
+
+export function IvueMaterialPlusResolver() {
+  return [{
+      type: 'component',
+      resolve: (name) => {
+        // 是否是 ivue组件
+        if (!name.match(/^Ivue[A-Z]/)) {
+          return;
+        }
+
+        // 转换为驼峰
+        const _kebabCase = kebabCase(name)
+
+        // 没有样式组件
+        if ([...noStylesComponents].includes(_kebabCase)) {
+          return resolveComponent(_kebabCase, {
+            importStyle: false
+          })
+        }
+
+        // 有样式组件
+        return resolveComponent(_kebabCase, {
+          importStyle: true
+        });
+      },
+    },
+    {
+      type: 'directive',
+      resolve: (name) => {
+        return resolveDirective(name)
+      },
+    },
+  ]
 }
