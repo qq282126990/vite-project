@@ -28,47 +28,22 @@ const useDependentComponents = [
     name: 'ivue-table',
     dependent: ['IvueTableColumn']
   },
+  // ivue-tabs
+  {
+    name: 'ivue-tabs',
+    dependent: ['IvueTabItem', 'IvueTab']
+  },
   // ivue-select
   {
     name: 'ivue-select',
     dependent: ['IvueOption', 'IvueOptionGroup']
+  },
+   // ivue-steps
+   {
+    name: 'ivue-steps',
+    dependent: ['IvueStep']
   }
 ]
-
-// 需要自动引入的插件或者css
-// function getSideEffects() {
-//   const sideEffects = [
-//     'popper.js/dist/umd/popper.js',
-//   ];
-
-//   return sideEffects;
-// }
-
-// 合并路径
-function mergePath(componentsName) {
-
-  if (componentsName.match('item')) {
-    const match = componentsName.match('item')
-
-    if (match) {
-      componentsName = componentsName.replace(`-${match[0]}`, '')
-    }
-  }
-
-  return [
-    `ivue-material-plus/dist/styles/color.css`,
-    `${pakPath}/styles/ivue-icon.css`,
-    `${pakPath}/styles/${componentsName}.css`,
-  ];
-}
-
-// 额外处理的路径
-function extraProcessingPath(name) {
-  return {
-    from: `${pakPath}/es/${name}`,
-    sideEffects: mergePath(name)
-  }
-}
 
 // 设置样式文件
 function getSideEffects(componentsName, options) {
@@ -78,32 +53,15 @@ function getSideEffects(componentsName, options) {
   }
 
   return [
-    `ivue-material-plus/dist/styles/color.css`,
     `${pakPath}/styles/reset.css`,
+    `ivue-material-plus/dist/styles/color.css`,
     `${pakPath}/styles/ivue-icon.css`,
-    `${pakPath}/styles/${componentsName}.css`,
+    `${pakPath}/styles/${componentsName}.css`
   ];
 }
 
-
-
 // 请求组件
 const resolveComponent = (componentsName, options) => {
-  // // ivue-select
-  // if (componentsName.match(/^ivue-op[a-z]/)) {
-  //   return {
-  //     from: `${pakPath}/es/ivue-select/${componentsName.replace('ivue-', '')}`,
-  //   }
-  // }
-
-  // ivue-steps
-  if (componentsName === 'ivue-step') {
-    return {
-      from: `${pakPath}/es/ivue-steps/${componentsName.replace('ivue-', '')}`,
-    }
-  }
-
-
   // 使用依赖组件
 
   let useDependentComponentsData = null
@@ -115,11 +73,9 @@ const resolveComponent = (componentsName, options) => {
 
       // 匹配输入的组件是否符合
       if (_kebabCase === componentsName) {
-      console.log('componentsName', dependent)
-
         useDependentComponentsData = {
           name: dependent,
-          from: `${pakPath}/es/${item.name}`,
+          from: `${pakPath}/es`,
         }
       }
     })
@@ -129,17 +85,6 @@ const resolveComponent = (componentsName, options) => {
   if (useDependentComponentsData) {
     return useDependentComponentsData
   }
-
-
-  // // ivue-table
-  // if (componentsName.match(/^ivue-tabl[a-z]/)) {
-  //   return extraProcessingPath('ivue-table')
-  // }
-
-  // // ivue-collapse
-  // if (componentsName.match(/^ivue-coll[a-z]/)) {
-  //   return extraProcessingPath('ivue-collapse')
-  // }
 
   return {
     from: `${pakPath}/es/${componentsName}`,
@@ -153,12 +98,26 @@ const resolveDirective = (name) => {
     Loading: {
       name: 'IvueLoadingDirective',
       importName: 'ivue-loading',
-      styleName: 'ivue-loading'
+      styleName: 'ivue-loading',
+      importStyle: true
     },
     Ripple: {
       name: 'Ripple',
       importName: 'ivue-ripple',
-      styleName: 'ivue-ripple'
+      styleName: 'ivue-ripple',
+      importStyle: true
+    },
+    ClickOutside: {
+      name: 'ClickOutside',
+      importName: 'ivue-click-outside',
+      styleName: 'ivue-click-outside',
+      importStyle: false
+    },
+    Touch: {
+      name: 'Touch',
+      importName: 'ivue-touch',
+      styleName: 'ivue-touch',
+      importStyle: false
     },
   }
 
@@ -172,7 +131,7 @@ const resolveDirective = (name) => {
     name: directive.name,
     from: `${pakPath}/es/${directive.importName}`,
     sideEffects: getSideEffects(directive.styleName, {
-      importStyle: true
+      importStyle: directive.importStyle
     })
   }
 }

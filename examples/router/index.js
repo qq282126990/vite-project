@@ -1,27 +1,232 @@
 import {
-  createWebHashHistory,
+  createWebHistory,
   createRouter
 } from 'vue-router';
 import Affix from '../components/affix.vue';
-import Animation from '../components/animation.vue';
+import Input from '../components/input.vue';
+import Icon from '../components/icon.vue';
+import Button from '../components/button.vue';
+import Elevation from '../components/elevation.vue';
+import Layout from '../components/layout.vue';
+import List from '../components/list.vue';
+import Carousel from '../components/carousel.vue';
+import Switch from '../components/switch.vue';
+import BottomNav from '../components/bottom-nav.vue';
+import Breadcrumb from '../components/breadcrumb.vue';
+import Select from '../components/select.vue';
+import Steps from '../components/steps.vue';
+import UpLoad from '../components/upLoad.vue';
+import Progress from '../components/progress.vue';
+import Circle from '../components/circle.vue';
+import Loading from '../components/loading.vue';
+import Notice from '../components/notice.vue';
+import Message from '../components/message.vue';
+import LoadingBar from '../components/loading-bar.vue';
+import Tabs from '../components/tabs.vue';
+import Badge from '../components/badge.vue';
+import DatePicker from '../components/date-picker.vue';
+import Collapse from '../components/collapse.vue';
+import Cascader from '../components/cascader.vue';
+import Tooltip from '../components/tooltip.vue';
+import Chip from '../components/chip.vue';
+import Radio from '../components/radio.vue';
+import Checkbox from '../components/checkbox.vue';
+import Avatar from '../components/avatar.vue';
+import Page from '../components/page.vue';
+import Spin from '../components/spin.vue';
+import Table from '../components/table.vue';
 import AutoComplete from '../components/auto-complete.vue';
+import Animation from '../components/animation.vue';
+import CountDown from '../components/count-down.vue';
+import CountUp from '../components/count-up.vue';
 
 const routes = [{
-  path: '/Affix',
-  name: 'Affix',
-  component: Affix
-}, {
-  path: '/animation',
-  name: 'Animation',
-  component: Animation
-}, {
-  path: '/auto-complete',
-  name: 'AutoComplete',
-  component: AutoComplete
-}, ];
+    path: '/Affix',
+    name: 'Affix',
+    component: Affix
+  },
+  {
+    path: '/loading-bar',
+    name: 'LoadingBar',
+    component: LoadingBar
+  },
+  {
+    path: '/Input',
+    name: 'Input',
+    component: Input
+  },
+  {
+    path: '/Icon',
+    name: 'Icon',
+    component: Icon
+  },
+  {
+    path: '/Button',
+    name: 'Button',
+    component: Button
+  },
+  {
+    path: '/Elevation',
+    name: 'Elevation',
+    component: Elevation
+  },
+  {
+    path: '/Layout',
+    name: 'Layout',
+    component: Layout
+  },
+  {
+    path: '/List',
+    name: 'List',
+    component: List
+  },
+  {
+    path: '/Carousel',
+    name: 'Carousel',
+    component: Carousel
+  },
+  {
+    path: '/Switch',
+    name: 'Switch',
+    component: Switch
+  },
+  {
+    path: '/bottom-nav',
+    name: 'BottomNav',
+    component: BottomNav
+  },
+  {
+    path: '/breadcrumb',
+    name: 'Breadcrumb',
+    component: Breadcrumb
+  },
+  {
+    path: '/select',
+    name: 'Select',
+    component: Select
+  },
+  {
+    path: '/steps',
+    name: 'Steps',
+    component: Steps
+  },
+  {
+    path: '/upLoad',
+    name: 'UpLoad',
+    component: UpLoad
+  },
+  {
+    path: '/progress',
+    name: 'Progress',
+    component: Progress
+  },
+  {
+    path: '/circle',
+    name: 'Circle',
+    component: Circle
+  },
+  {
+    path: '/loading',
+    name: 'Loading',
+    component: Loading
+  },
+  {
+    path: '/notice',
+    name: 'Notice',
+    component: Notice
+  },
+  {
+    path: '/message',
+    name: 'Message',
+    component: Message
+  },
+  {
+    path: '/tabs',
+    name: 'Tabs',
+    component: Tabs
+  },
+  {
+    path: '/badge',
+    name: 'Badge',
+    component: Badge
+  },
+  {
+    path: '/date-picker',
+    name: 'DatePicker',
+    component: DatePicker
+  },
+  {
+    path: '/collapse',
+    name: 'Collapse',
+    component: Collapse
+  },
+  {
+    path: '/cascader',
+    name: 'Cascader',
+    component: Cascader
+  },
+  {
+    path: '/tooltip',
+    name: 'Tooltip',
+    component: Tooltip
+  },
+  {
+    path: '/chip',
+    name: 'Chip',
+    component: Chip
+  },
+  {
+    path: '/radio',
+    name: 'Radio',
+    component: Radio
+  },
+  {
+    path: '/checkbox',
+    name: 'Checkbox',
+    component: Checkbox
+  },
+  {
+    path: '/avatar',
+    name: 'Avatar',
+    component: Avatar
+  },
+  {
+    path: '/page',
+    name: 'Page',
+    component: Page
+  },
+  {
+    path: '/spin',
+    name: 'Spin',
+    component: Spin
+  },
+  {
+    path: '/table',
+    name: 'Table',
+    component: Table
+  },
+  {
+    path: '/auto-complete',
+    name: 'AutoComplete',
+    component: AutoComplete
+  }, {
+    path: '/animation',
+    name: 'Animation',
+    component: Animation
+  },
+  {
+    path: '/count-down',
+    name: 'CountDown',
+    component: CountDown
+  }, {
+    path: '/count-up',
+    name: 'CountUp',
+    component: CountUp
+  }
+];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 });
 
