@@ -7,7 +7,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import {
   IvueMaterialPlusResolver
-} from './ivue-material-plus'
+} from './ivue-material-plus-test.js'
 
 export default defineConfig({
 
