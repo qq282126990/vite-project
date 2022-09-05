@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import {IvueAffix} from '../../dist/ivue-material-plus.min.esm'
+
 export default {
     methods: {
         handleChang() {
@@ -28,6 +30,9 @@ export default {
             console.log('handleSwipeItem')
         }
     },
+    components: {
+        IvueAffix
+    }
 };
 </script>
 
