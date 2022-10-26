@@ -55,7 +55,7 @@
             </ivue-table-column>
         </ivue-table>
         <h1>流体高度</h1>
-        <ivue-table maxHeight="250" :data="tableData3" style="width: 100%">
+        <ivue-table maxHeight="250" :data="tableData13" style="width: 100%">
             <ivue-table-column fixed prop="date" label="Date" width="150"></ivue-table-column>
             <ivue-table-column prop="name" label="Name" width="120"></ivue-table-column>
             <ivue-table-column prop="state" label="State" width="120"></ivue-table-column>
@@ -379,6 +379,32 @@ export default {
                 },
             ],
             tableData3: [
+                {
+                    date: '2016-05-01',
+                    name: 'Tom',
+                    state: 'California',
+                    city: 'Los Angeles',
+                    address: 'No. 189, Grove St, Los Angeles',
+                    zip: 'CA 90036',
+                },
+                {
+                    date: '2016-05-02',
+                    name: 'Tom',
+                    state: 'California',
+                    city: 'Los Angeles',
+                    address: 'No. 189, Grove St, Los Angeles',
+                    zip: 'CA 90036',
+                },
+                {
+                    date: '2016-05-03',
+                    name: 'Tom',
+                    state: 'California',
+                    city: 'Los Angeles',
+                    address: 'No. 189, Grove St, Los Angeles',
+                    zip: 'CA 90036',
+                },
+            ],
+             tableData13: [
                 {
                     date: '2016-05-01',
                     name: 'Tom',
@@ -858,7 +884,7 @@ export default {
             }
         },
         onAddItem() {
-            this.tableData3.push({
+            this.tableData13.push({
                 date: 1,
                 name: 'Tom',
                 state: 'California',
@@ -868,7 +894,7 @@ export default {
             });
         },
         deleteRow(index) {
-            this.tableData3.splice(index, 1);
+            this.tableData13.splice(index, 1);
         },
         handleCurrentChange(currentRow, oldCurrentRow) {
             console.log('val', currentRow, oldCurrentRow);

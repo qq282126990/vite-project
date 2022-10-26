@@ -39,190 +39,220 @@ import AutoComplete from '../components/auto-complete.vue';
 import Animation from '../components/animation.vue';
 import CountDown from '../components/count-down.vue';
 import CountUp from '../components/count-up.vue';
+import Card from '../components/card.vue';
+import Scrollbar from '../components/scrollbar.vue';
+import Image from '../components/image.vue';
+import NoticeBar from '../components/notice-bar.vue';
+import CarouselLoop from '../components/carousel-loop.vue';
 
 const routes = [{
     path: '/Affix',
     name: 'Affix',
     component: Affix
   },
-  // {
-  //   path: '/loading-bar',
-  //   name: 'LoadingBar',
-  //   component: LoadingBar
-  // },
-  // {
-  //   path: '/Input',
-  //   name: 'Input',
-  //   component: Input
-  // },
-  // {
-  //   path: '/Icon',
-  //   name: 'Icon',
-  //   component: Icon
-  // },
-  // {
-  //   path: '/Button',
-  //   name: 'Button',
-  //   component: Button
-  // },
-  // {
-  //   path: '/Elevation',
-  //   name: 'Elevation',
-  //   component: Elevation
-  // },
-  // {
-  //   path: '/Layout',
-  //   name: 'Layout',
-  //   component: Layout
-  // },
-  // {
-  //   path: '/List',
-  //   name: 'List',
-  //   component: List
-  // },
-  // {
-  //   path: '/Carousel',
-  //   name: 'Carousel',
-  //   component: Carousel
-  // },
-  // {
-  //   path: '/Switch',
-  //   name: 'Switch',
-  //   component: Switch
-  // },
-  // {
-  //   path: '/bottom-nav',
-  //   name: 'BottomNav',
-  //   component: BottomNav
-  // },
-  // {
-  //   path: '/breadcrumb',
-  //   name: 'Breadcrumb',
-  //   component: Breadcrumb
-  // },
-  // {
-  //   path: '/select',
-  //   name: 'Select',
-  //   component: Select
-  // },
-  // {
-  //   path: '/steps',
-  //   name: 'Steps',
-  //   component: Steps
-  // },
-  // {
-  //   path: '/upLoad',
-  //   name: 'UpLoad',
-  //   component: UpLoad
-  // },
-  // {
-  //   path: '/progress',
-  //   name: 'Progress',
-  //   component: Progress
-  // },
-  // {
-  //   path: '/circle',
-  //   name: 'Circle',
-  //   component: Circle
-  // },
-  // {
-  //   path: '/loading',
-  //   name: 'Loading',
-  //   component: Loading
-  // },
-  // {
-  //   path: '/notice',
-  //   name: 'Notice',
-  //   component: Notice
-  // },
-  // {
-  //   path: '/message',
-  //   name: 'Message',
-  //   component: Message
-  // },
-  // {
-  //   path: '/tabs',
-  //   name: 'Tabs',
-  //   component: Tabs
-  // },
-  // {
-  //   path: '/badge',
-  //   name: 'Badge',
-  //   component: Badge
-  // },
-  // {
-  //   path: '/date-picker',
-  //   name: 'DatePicker',
-  //   component: DatePicker
-  // },
-  // {
-  //   path: '/collapse',
-  //   name: 'Collapse',
-  //   component: Collapse
-  // },
-  // {
-  //   path: '/cascader',
-  //   name: 'Cascader',
-  //   component: Cascader
-  // },
-  // {
-  //   path: '/tooltip',
-  //   name: 'Tooltip',
-  //   component: Tooltip
-  // },
-  // {
-  //   path: '/chip',
-  //   name: 'Chip',
-  //   component: Chip
-  // },
-  // {
-  //   path: '/radio',
-  //   name: 'Radio',
-  //   component: Radio
-  // },
-  // {
-  //   path: '/checkbox',
-  //   name: 'Checkbox',
-  //   component: Checkbox
-  // },
-  // {
-  //   path: '/avatar',
-  //   name: 'Avatar',
-  //   component: Avatar
-  // },
-  // {
-  //   path: '/page',
-  //   name: 'Page',
-  //   component: Page
-  // },
-  // {
-  //   path: '/spin',
-  //   name: 'Spin',
-  //   component: Spin
-  // },
-  // {
-  //   path: '/table',
-  //   name: 'Table',
-  //   component: Table
-  // },
-  // {
-  //   path: '/auto-complete',
-  //   name: 'AutoComplete',
-  //   component: AutoComplete
-  // }, {
-  //   path: '/animation',
-  //   name: 'Animation',
-  //   component: Animation
-  // },
-  // {
-  //   path: '/count-down',
-  //   name: 'CountDown',
-  //   component: CountDown
-  // }, {
-  //   path: '/count-up',
-  //   name: 'CountUp',
-  //   component: CountUp
-  // }
+  {
+    path: '/loading-bar',
+    name: 'LoadingBar',
+    component: LoadingBar
+  },
+  {
+    path: '/Input',
+    name: 'Input',
+    component: Input
+  },
+  {
+    path: '/Icon',
+    name: 'Icon',
+    component: Icon
+  },
+  {
+    path: '/Button',
+    name: 'Button',
+    component: Button
+  },
+  {
+    path: '/Elevation',
+    name: 'Elevation',
+    component: Elevation
+  },
+  {
+    path: '/Layout',
+    name: 'Layout',
+    component: Layout
+  },
+  {
+    path: '/List',
+    name: 'List',
+    component: List
+  },
+  {
+    path: '/Carousel',
+    name: 'Carousel',
+    component: Carousel
+  },
+  {
+    path: '/Switch',
+    name: 'Switch',
+    component: Switch
+  },
+  {
+    path: '/bottom-nav',
+    name: 'BottomNav',
+    component: BottomNav
+  },
+  {
+    path: '/breadcrumb',
+    name: 'Breadcrumb',
+    component: Breadcrumb
+  },
+  {
+    path: '/select',
+    name: 'Select',
+    component: Select
+  },
+  {
+    path: '/steps',
+    name: 'Steps',
+    component: Steps
+  },
+  {
+    path: '/upLoad',
+    name: 'UpLoad',
+    component: UpLoad
+  },
+  {
+    path: '/progress',
+    name: 'Progress',
+    component: Progress
+  },
+  {
+    path: '/circle',
+    name: 'Circle',
+    component: Circle
+  },
+  {
+    path: '/loading',
+    name: 'Loading',
+    component: Loading
+  },
+  {
+    path: '/notice',
+    name: 'Notice',
+    component: Notice
+  },
+  {
+    path: '/message',
+    name: 'Message',
+    component: Message
+  },
+  {
+    path: '/tabs',
+    name: 'Tabs',
+    component: Tabs
+  },
+  {
+    path: '/badge',
+    name: 'Badge',
+    component: Badge
+  },
+  {
+    path: '/date-picker',
+    name: 'DatePicker',
+    component: DatePicker
+  },
+  {
+    path: '/collapse',
+    name: 'Collapse',
+    component: Collapse
+  },
+  {
+    path: '/cascader',
+    name: 'Cascader',
+    component: Cascader
+  },
+  {
+    path: '/tooltip',
+    name: 'Tooltip',
+    component: Tooltip
+  },
+  {
+    path: '/chip',
+    name: 'Chip',
+    component: Chip
+  },
+  {
+    path: '/radio',
+    name: 'Radio',
+    component: Radio
+  },
+  {
+    path: '/checkbox',
+    name: 'Checkbox',
+    component: Checkbox
+  },
+  {
+    path: '/avatar',
+    name: 'Avatar',
+    component: Avatar
+  },
+  {
+    path: '/page',
+    name: 'Page',
+    component: Page
+  },
+  {
+    path: '/spin',
+    name: 'Spin',
+    component: Spin
+  },
+  {
+    path: '/table',
+    name: 'Table',
+    component: Table
+  },
+  {
+    path: '/auto-complete',
+    name: 'AutoComplete',
+    component: AutoComplete
+  }, {
+    path: '/animation',
+    name: 'Animation',
+    component: Animation
+  },
+  {
+    path: '/count-down',
+    name: 'CountDown',
+    component: CountDown
+  }, {
+    path: '/count-up',
+    name: 'CountUp',
+    component: CountUp
+  },
+  {
+    path: '/card',
+    name: 'Card',
+    component: Card
+  },
+  {
+    path: '/scrollbar',
+    name: 'Scrollbar',
+    component: Scrollbar
+  },
+  {
+    path: '/image',
+    name: 'Image',
+    component: Image
+  },
+  {
+    path: '/notice-bar',
+    name: 'NoticeBar',
+    component: NoticeBar
+  },
+  {
+    path: '/carousel-loop',
+    name: 'CarouselLoop',
+    component: CarouselLoop
+  }
 ];
 
 const router = createRouter({

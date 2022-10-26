@@ -1,12 +1,6 @@
 <template>
     <div class="affix-wrapper">
-        <div
-            class="affix"
-            v-touch="{
-                left: e => handleSwipeItem('next'),
-                right: e => handleSwipeItem('prev'),
-            }"
-        >
+        <div class="affix">
             <ivue-affix @on-change="handleChang">
                 <div class="demo-affix">固定在最顶部</div>
             </ivue-affix>
@@ -19,20 +13,12 @@
 </template>
 
 <script>
-import {IvueAffix} from '../../dist/ivue-material-plus.min.esm'
-
 export default {
     methods: {
         handleChang() {
             console.log('>>>>>>');
         },
-        handleSwipeItem() {
-            console.log('handleSwipeItem')
-        }
     },
-    components: {
-        IvueAffix
-    }
 };
 </script>
 

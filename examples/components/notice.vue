@@ -54,10 +54,10 @@ import { h } from 'vue';
 
 export default {
     mounted() {
-            // this.$notice.config({
-            //     offset: 100,
-            //     // duration: 2000
-            // })
+            this.$notice.config({
+                offset: 100,
+                // duration: 2000
+            })
     },
     methods: {
         showCloseAll() {
@@ -163,6 +163,7 @@ export default {
         error(nodesc) {
             this.$notice.error({
                 title: 'Notification title',
+                duration: 0,
                 desc: nodesc
                     ? ''
                     : 'Here is the notification description. Here is the notification description. ',

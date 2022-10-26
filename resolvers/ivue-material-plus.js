@@ -125,6 +125,10 @@ const resolveDirective = (name, options) => {
   };
 };
 function IvueMaterialPlusResolver(options) {
+  let optionsResolved = {
+    ssr: false,
+    ...options
+  };
   return [
     {
       type: "component",
@@ -136,19 +140,22 @@ function IvueMaterialPlusResolver(options) {
         if ([...noStylesComponents].includes(_kebabCase)) {
           return resolveComponent(_kebabCase, {
             importStyle: false,
-            ...options
+            ...optionsResolved
           });
         }
         return resolveComponent(_kebabCase, {
           importStyle: true,
-          ...options
+          ...optionsResolved
         });
       }
     },
     {
       type: "directive",
       resolve: (name) => {
-        return resolveDirective(name, options);
+        return resolveDirective(name, {
+          ssr: false,
+          ...optionsResolved
+        });
       }
     }
   ];

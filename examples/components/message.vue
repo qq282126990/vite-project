@@ -53,9 +53,9 @@ import { h } from 'vue';
 
 export default {
     mounted() {
-        // this.$message.config({
-        //     offset: 200,
-        // });
+        this.$message.config({
+            offset: 200,
+        });
     },
     methods: {
         showCloseAll() {

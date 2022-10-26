@@ -7,22 +7,22 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import {
   IvueMaterialPlusResolver
-} from './ivue-material-plus-test.js'
+} from './resolvers/ivue-material-plus.ts'
 import ElementPlus from 'unplugin-element-plus/vite'
 
 export default defineConfig({
   plugins: [
     vue(),
-    ElementPlus()
-    // AutoImport({
-    //   resolvers: [
-    //     IvueMaterialPlusResolver(),
-    //   ],
-    // }),
-    // Components({
-    //   resolvers: [
-    //     IvueMaterialPlusResolver(),
-    //   ],
-    // }),
+    ElementPlus(),
+    AutoImport({
+      resolvers: [
+        IvueMaterialPlusResolver(),
+      ],
+    }),
+    Components({
+      resolvers: [
+        IvueMaterialPlusResolver(),
+      ],
+    }),
   ],
 });
