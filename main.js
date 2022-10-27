@@ -19,7 +19,6 @@ import router from './examples/router/index'
 // import ElementPlus from 'ivue-material-plus/dist/ivue-material-plus.min.esm'
 
 const app = createApp(App)
-import 'ivue-material-plus/dist/unplugin-vue-components/styles/ivue-notice.css'
 
 
 // import ElementPlus from 'ivue-material-plus'

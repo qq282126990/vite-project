@@ -6,7 +6,7 @@ function kebabCase(key) {
   const result = key.replace(/([A-Z])/g, " $1").trim();
   return result.split(" ").join("-").toLowerCase();
 }
-const pakPath = "ivue-material-plus/dist/unplugin-vue-components";
+const pakPath = "ivue-material-plus/dist/ivue-material-plus";
 const basePath = "ivue-material-plus/dist/styles/base.css";
 const noStylesComponents = [
   "ivue-content",
@@ -73,6 +73,7 @@ const resolveComponent = (componentsName, options) => {
     return useDependentComponentsData;
   }
   return {
+    name: options.name,
     from: `${pakPath}/${options.ssr ? "lib" : "es"}`,
     sideEffects: getSideEffects(componentsName, options)
   };
@@ -80,7 +81,7 @@ const resolveComponent = (componentsName, options) => {
 const resolveDirective = (name, options) => {
   const directives = {
     Loading: {
-      name: "IvueLoadingDirective",
+      name: "IvueLoading",
       importName: "ivue-loading",
       styleName: "ivue-loading",
       importStyle: true
@@ -139,11 +140,13 @@ function IvueMaterialPlusResolver(options) {
         const _kebabCase = kebabCase(name);
         if ([...noStylesComponents].includes(_kebabCase)) {
           return resolveComponent(_kebabCase, {
+            name,
             importStyle: false,
             ...optionsResolved
           });
         }
         return resolveComponent(_kebabCase, {
+          name,
           importStyle: true,
           ...optionsResolved
         });
@@ -152,10 +155,7 @@ function IvueMaterialPlusResolver(options) {
     {
       type: "directive",
       resolve: (name) => {
-        return resolveDirective(name, {
-          ssr: false,
-          ...optionsResolved
-        });
+        return resolveDirective(name, optionsResolved);
       }
     }
   ];

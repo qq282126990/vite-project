@@ -5,6 +5,8 @@ export interface resolverOptions {
   ssr?: boolean
   // 是否引入style
   importStyle?: boolean
+  // 组件名称
+  name?: string
 }
 
 // 转换为驼峰
@@ -94,7 +96,6 @@ const resolveComponent = (componentsName: string, options: resolverOptions): Com
       // 匹配输入的组件是否符合
       if (_kebabCase === componentsName) {
         useDependentComponentsData = {
-          name: options.name,
           name: dependent,
           from: `${pakPath}/${options.ssr ? 'lib' : 'es'}`,
         };
@@ -162,8 +163,6 @@ const resolveDirective = (name: string, options: resolverOptions) => {
     return;
   }
 
-  console.log('directive.name', name)
-
   return {
     name: directive.name,
     from: `${pakPath}/${options.ssr ? 'lib' : 'es'}`,
@@ -174,7 +173,7 @@ const resolveDirective = (name: string, options: resolverOptions) => {
   };
 };
 
-export function IvueMaterialPlusResolver(options: resolverOptions): ComponentResolver[] {
+export function IvueMaterialPlusResolver(options?: resolverOptions): ComponentResolver[] {
 
   let optionsResolved = {
     ssr: false,

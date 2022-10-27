@@ -53,62 +53,62 @@ import { h } from 'vue';
 
 export default {
     mounted() {
-        this.$message.config({
+        IvueMessage.config({
             offset: 200,
         });
     },
     methods: {
         showCloseAll() {
-            this.$message.closeAll();
+            IvueMessage.closeAll();
         },
         info() {
-            this.$message.info({
+            IvueMessage.info({
                 content: '这是一条带背景色的通知',
             });
         },
         success() {
-            this.$message.success({
+            IvueMessage.success({
                 content: '这是一条带背景色的通知',
             });
         },
         warning() {
-            this.$message.warning({
+            IvueMessage.warning({
                 content: '这是一条带背景色的通知',
             });
         },
         error() {
-            this.$message.error({
+            IvueMessage.error({
                 content: '这是一条带背景色的通知',
             });
         },
         background(type) {
-            this.$message[type]({
+            IvueMessage[type]({
                 background: true,
                 content: '这是一条带背景色的通知',
             });
         },
         loading() {
-            const msg = this.$message.loading({
+            const msg = IvueMessage.loading({
                 content: 'Loading...',
                 duration: 0,
             });
             setTimeout(msg, 3000);
         },
         time() {
-            this.$message.info({
+            IvueMessage.info({
                 content: 'I ll be gone in 10 seconds',
                 duration: 10000,
             });
         },
         closable() {
-            this.$message.info({
+            IvueMessage.info({
                 content: 'Tips for manual closing',
                 duration: 0,
                 closable: true,
             });
         },
         renderFunc() {
-            this.$message.info({
+            IvueMessage.info({
                 render: () => {
                     return h('span', [
                         'This is created by ',
