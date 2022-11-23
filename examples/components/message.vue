@@ -53,62 +53,65 @@ import { h } from 'vue';
 
 export default {
     mounted() {
-        IvueMessage.config({
+        this.$message.config({
             offset: 200,
         });
     },
     methods: {
         showCloseAll() {
-            IvueMessage.closeAll();
+            this.$message.closeAll();
         },
         info() {
-            IvueMessage.info({
+            this.$message.info({
                 content: '这是一条带背景色的通知',
             });
         },
         success() {
-            IvueMessage.success({
+            this.$message.success({
                 content: '这是一条带背景色的通知',
+                duration: 0,
             });
         },
         warning() {
-            IvueMessage.warning({
+            this.$message.warning({
                 content: '这是一条带背景色的通知',
+                duration: 0,
             });
         },
         error() {
-            IvueMessage.error({
+            this.$message.error({
                 content: '这是一条带背景色的通知',
+                duration: 0,
             });
         },
         background(type) {
-            IvueMessage[type]({
+            this.$message[type]({
                 background: true,
                 content: '这是一条带背景色的通知',
             });
         },
         loading() {
-            const msg = IvueMessage.loading({
+            const msg = this.$message.loading({
                 content: 'Loading...',
                 duration: 0,
             });
             setTimeout(msg, 3000);
         },
         time() {
-            IvueMessage.info({
+            this.$message.info({
                 content: 'I ll be gone in 10 seconds',
                 duration: 10000,
             });
         },
         closable() {
-            IvueMessage.info({
+            this.$message.info({
                 content: 'Tips for manual closing',
                 duration: 0,
                 closable: true,
             });
         },
         renderFunc() {
-            IvueMessage.info({
+            this.$message.info({
                 render: () => {
                     return h('span', [
                         'This is created by ',

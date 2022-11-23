@@ -8,12 +8,10 @@ import Components from 'unplugin-vue-components/vite'
 import {
   IvueMaterialPlusResolver
 } from './resolvers/ivue-material-plus.ts'
-import ElementPlus from 'unplugin-element-plus/vite'
 
 export default defineConfig({
   plugins: [
     vue(),
-    ElementPlus(),
     AutoImport({
       resolvers: [
         IvueMaterialPlusResolver(),

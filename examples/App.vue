@@ -28,10 +28,6 @@
                 </li>
 
                 <li>
-                    <router-link to="/list">List</router-link>
-                </li>
-
-                <li>
                     <router-link to="/carousel">Carousel</router-link>
                 </li>
 
@@ -149,6 +145,27 @@
                 <li>
                     <router-link to="/carousel-loop">CarouselLoop</router-link>
                 </li>
+                <li>
+                    <router-link to="/ellipsis">Ellipsis</router-link>
+                </li>
+                <li>
+                    <router-link to="/relative-time">RelativeTime</router-link>
+                </li>
+                <li>
+                    <router-link to="/back-top">BackTop</router-link>
+                </li>
+                <li>
+                    <router-link to="/modal">Modal</router-link>
+                </li>
+                <li>
+                    <router-link to="/popover">Popover</router-link>
+                </li>
+                <li>
+                    <router-link to="/input-number">InputNumber</router-link>
+                </li>
+                  <li>
+                    <router-link to="/menu">Menu</router-link>
+                </li>
             </ul>
         </nav>
 
@@ -184,7 +201,7 @@ nav {
     }
 }
 .container {
-    padding: 10px 8px 0;
+    padding: 10px 8px 50px;
 }
 .v-link-active {
     color: #bbb;

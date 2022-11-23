@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>tooltip</h1>
-        <ivue-ellipsis :text="text" :height="30" autoResize tooltip></ivue-ellipsis>
+        <ivue-ellipsis :text="text" :height="30" autoResize tooltip ></ivue-ellipsis>
         <p>transfer</p>
         <ivue-ellipsis :text="text" autoResize tooltip theme="light" transfer></ivue-ellipsis>
         <h1>按照字符数省略</h1>

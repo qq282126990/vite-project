@@ -206,7 +206,9 @@ export default {
         return {};
     },
     mounted() {
+        setTimeout(() => {
             this.$refs.carousel.setActiveItem(2);
+        }, 2000);
     },
     methods: {
         handleClick() {

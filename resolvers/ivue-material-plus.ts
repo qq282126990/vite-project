@@ -20,13 +20,15 @@ const pakPath = 'ivue-material-plus/dist/unplugin-vue-components';
 
 // 颜色路径
 const basePath = 'ivue-material-plus/dist/styles/base.css';
+// 动画路径
+const animationPath = 'ivue-material-plus/dist/styles/animation.css';
 
 // 没有样式的组件
 const noStylesComponents = [
   'ivue-content',
   'ivue-carousel-item',
   'ivue-bottom-nav-item',
-  'ivue-breadcrumbs-item',
+  'ivue-breadcrumb-item',
   'ivue-checkbox-group',
   'ivue-collapse-panel',
   'ivue-count-down',
@@ -34,7 +36,11 @@ const noStylesComponents = [
   'ivue-radio-group',
   'ivue-option',
   'ivue-option-group',
-  'ivue-image-preview'
+  'ivue-image-preview',
+  'ivue-relative-time',
+  'ivue-submenu',
+  'ivue-menu-group',
+  'ivue-menu-item'
 ];
 
 // 使用依赖组件
@@ -58,7 +64,7 @@ const useDependentComponents = [
   {
     name: 'ivue-steps',
     dependent: ['IvueStep']
-  }
+  },
 ];
 
 // 设置样式文件
@@ -79,6 +85,7 @@ function getSideEffects(componentsName: string, options) {
     `${pakPath}/styles/reset.css`,
     `${pakPath}/styles/ivue-icon.css`,
     `${basePath}`,
+    `${animationPath}`,
     `${pakPath}/styles/${componentsName}.css`
   ];
 }
@@ -86,7 +93,10 @@ function getSideEffects(componentsName: string, options) {
 // 请求组件
 const resolveComponent = (componentsName: string, options: resolverOptions): ComponentInfo | undefined => {
   // 使用依赖组件
-  let useDependentComponentsData = null;
+  let useDependentComponentsData: {
+    name: string,
+    from: string
+  } | null = null;
 
   useDependentComponents.forEach((item) => {
     item.dependent.forEach((dependent) => {

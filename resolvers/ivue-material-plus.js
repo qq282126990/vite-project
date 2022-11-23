@@ -6,13 +6,14 @@ function kebabCase(key) {
   const result = key.replace(/([A-Z])/g, " $1").trim();
   return result.split(" ").join("-").toLowerCase();
 }
-const pakPath = "ivue-material-plus/dist/ivue-material-plus";
+const pakPath = "ivue-material-plus/dist/unplugin-vue-components";
 const basePath = "ivue-material-plus/dist/styles/base.css";
+const animationPath = "ivue-material-plus/dist/styles/animation.css";
 const noStylesComponents = [
   "ivue-content",
   "ivue-carousel-item",
   "ivue-bottom-nav-item",
-  "ivue-breadcrumbs-item",
+  "ivue-breadcrumb-item",
   "ivue-checkbox-group",
   "ivue-collapse-panel",
   "ivue-count-down",
@@ -20,7 +21,8 @@ const noStylesComponents = [
   "ivue-radio-group",
   "ivue-option",
   "ivue-option-group",
-  "ivue-image-preview"
+  "ivue-image-preview",
+  "ivue-relative-time"
 ];
 const useDependentComponents = [
   {
@@ -53,6 +55,7 @@ function getSideEffects(componentsName, options) {
     `${pakPath}/styles/reset.css`,
     `${pakPath}/styles/ivue-icon.css`,
     `${basePath}`,
+    `${animationPath}`,
     `${pakPath}/styles/${componentsName}.css`
   ];
 }
